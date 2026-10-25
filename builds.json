@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "profiles": {
+    "openup1": {
+      "description": "OpenUp's openup_vtk and examples 05 and 10, nothing else; the configuration in OpenUp's tools/setup_golden_env.sh",
+      "modules": ["CommonCore", "CommonDataModel", "FiltersCore", "FiltersGeneral",
+                  "IOImage", "IOPLY", "ImagingHybrid", "RenderingCore",
+                  "RenderingOpenGL2", "RenderingVolumeOpenGL2", "RenderingExternal"],
+      "cmake": {
+        "BUILD_SHARED_LIBS": "ON",
+        "VTK_WRAP_PYTHON": "OFF",
+        "VTK_BUILD_TESTING": "OFF",
+        "VTK_BUILD_EXAMPLES": "OFF",
+        "VTK_MODULE_USE_EXTERNAL_VTK_nlohmannjson": "ON"
+      },
+      "nlohmann_json": "external (the system's, or v3.11.3 as OpenUp fetches it)"
+    }
+  },
+  "builds": [
+    {
+      "name": "vtk-9.4.2-openup1-linux-ubuntu24.04-x86_64-gcc13-release",
+      "package": "vtk",
+      "version": "9.4.2",
+      "profile": "openup1",
+      "os": "linux",
+      "os_version": "ubuntu24.04",
+      "arch": "x86_64",
+      "toolchain": "gcc13",
+      "config": "release",
+      "file": "vtk/9.4.2/vtk-9.4.2-openup1-linux-ubuntu24.04-x86_64-gcc13-release.tar.gz",
+      "url": "https://raw.githubusercontent.com/ivlab/OpenUp-deps/main/vtk/9.4.2/vtk-9.4.2-openup1-linux-ubuntu24.04-x86_64-gcc13-release.tar.gz",
+      "sha256": "b36644aa8271ecfe83e62ba94f35f87e9c620cdf314315e4be54e4a64cbede9d",
+      "bytes": 64829972,
+      "unpacks_to": "vtk-install",
+      "built_with": {
+        "source": "https://github.com/Kitware/VTK tag v9.4.2",
+        "system": "Ubuntu 24.04, glibc 2.39",
+        "compiler": "GCC 13.3.0, libstdc++",
+        "cmake_build_type": "Release",
+        "opengl": "X11 with EGL",
+        "built_by": "OpenUp tools/setup_golden_env.sh, in a Claude Code cloud container"
+      }
+    }
+  ]
+}
