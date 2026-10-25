@@ -6,7 +6,8 @@ can build OpenUp and make its render goldens without building them first.
 Building VTK takes an hour or more on every system it is needed on.
 
 It holds VTK 9.4.2 for Ubuntu 24.04 on x86_64 and for macOS (13 and
-later) on Apple silicon; Windows builds are next. OpenUp's CMake fetches
+later) on Apple silicon, and for Windows 10 and later on x86_64 (Visual
+Studio 2022, release and debug). OpenUp's CMake fetches
 the build for its machine by itself: configure with `OPENUP_WITH_VTK=ON`
 and, when no VTK is installed, it reads `builds.json`, downloads the
 matching build once into a cache (`%LOCALAPPDATA%\OpenUp\deps` on
@@ -50,9 +51,9 @@ For example:
 
 ```
 vtk-9.4.2-openup1-linux-ubuntu24.04-x86_64-gcc13-release.tar.gz   (here now)
-vtk-9.4.2-openup1-macos-macos13-arm64-appleclang15-release.tar.gz (planned)
-vtk-9.4.2-openup1-windows-win10-x86_64-msvc143-release.zip        (planned)
-vtk-9.4.2-openup1-windows-win10-x86_64-msvc143-debug.zip          (planned)
+vtk-9.4.2-openup1-macos-macos13-arm64-appleclang21-release.tar.gz (here now)
+vtk-9.4.2-openup1-windows-win10-x86_64-msvc143-release.zip        (here now)
+vtk-9.4.2-openup1-windows-win10-x86_64-msvc143-debug.zip          (here now)
 ```
 
 ## Profiles
