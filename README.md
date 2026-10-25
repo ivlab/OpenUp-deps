@@ -5,9 +5,14 @@ fresh machine (a Claude Code cloud session, a CI runner, a lab desktop)
 can build OpenUp and make its render goldens without building them first.
 Building VTK takes an hour or more on every system it is needed on.
 
-Today this holds one build, VTK 9.4.2 for Ubuntu 24.04 on x86_64. The
-layout and the names leave room for Windows and macOS builds, more
-architectures, and more VTK versions beside it.
+It holds VTK 9.4.2 for Ubuntu 24.04 on x86_64 and for macOS (13 and
+later) on Apple silicon; Windows builds are next. OpenUp's CMake fetches
+the build for its machine by itself: configure with `OPENUP_WITH_VTK=ON`
+and, when no VTK is installed, it reads `builds.json`, downloads the
+matching build once into a cache (`%LOCALAPPDATA%\OpenUp\deps` on
+Windows, `~/.cache/openup/deps` elsewhere), checks its sha256 and uses it
+(OpenUp's `cmake/OpenUpPrebuiltVTK.cmake`). A machine with no build here
+yet should make one and add it, so no one else has to.
 
 ## Layout
 
@@ -92,11 +97,26 @@ becomes `~/vtk-install`.
 - sha256 `b36644aa8271ecfe83e62ba94f35f87e9c620cdf314315e4be54e4a64cbede9d`
 - About 62 MB packed, 253 MB unpacked.
 
+### `vtk-9.4.2-openup1-macos-macos13-arm64-appleclang21-release.tar.gz`
+
+Built on an Apple M1 (macOS 26, Apple clang 21, deployment target 13.0)
+by OpenUp's `tools/build_prebuilt_vtk.sh` from VTK's `v9.4.2` tag.
+OpenGL is Cocoa's. nlohmann json v3.11.3, which VTK was built against, is
+installed in the same prefix, so OpenUp finds both there. Any Apple clang
+can use it, on macOS 13 or later.
+
+- sha256 `9b4dd8a72da052c1a94b0bb6d5281e16bd51d263b6b150a272b67fc444abeb5f`
+- About 47 MB packed.
+- Verified: a fresh OpenUp configured with `OPENUP_WITH_VTK=ON` fetched
+  it, built, and passed its tests.
+
 ## Adding a build
 
-1. Build VTK with the profile's options (for `openup1`, those in
-   `tools/setup_golden_env.sh`), installed to a prefix named
-   `vtk-install`.
+1. Build VTK with the profile's options, installed to a prefix named
+   `vtk-install`: OpenUp's `tools/build_prebuilt_vtk.sh` (macOS, Linux)
+   and `tools/build_prebuilt_vtk.ps1` (Windows, from a Developer
+   PowerShell) do every step below for the machine they run on, given a
+   clone of this repository (`--publish <clone>`; `--push` to push).
 2. Pack the prefix: `tar czf <name>.tar.gz -C <parent> vtk-install`, or
    on Windows a `.zip` whose top folder is `vtk-install`.
 3. Name it by the convention above, put it in `vtk/<version>/`, and
