@@ -3,9 +3,19 @@
   "profiles": {
     "openup1": {
       "description": "OpenUp's openup_vtk and examples 05 and 10, nothing else; the configuration in OpenUp's tools/setup_golden_env.sh",
-      "modules": ["CommonCore", "CommonDataModel", "FiltersCore", "FiltersGeneral",
-                  "IOImage", "IOPLY", "ImagingHybrid", "RenderingCore",
-                  "RenderingOpenGL2", "RenderingVolumeOpenGL2", "RenderingExternal"],
+      "modules": [
+        "CommonCore",
+        "CommonDataModel",
+        "FiltersCore",
+        "FiltersGeneral",
+        "IOImage",
+        "IOPLY",
+        "ImagingHybrid",
+        "RenderingCore",
+        "RenderingOpenGL2",
+        "RenderingVolumeOpenGL2",
+        "RenderingExternal"
+      ],
       "cmake": {
         "BUILD_SHARED_LIBS": "ON",
         "VTK_WRAP_PYTHON": "OFF",
@@ -39,6 +49,31 @@
         "cmake_build_type": "Release",
         "opengl": "X11 with EGL",
         "built_by": "OpenUp tools/setup_golden_env.sh, in a Claude Code cloud container"
+      }
+    },
+    {
+      "name": "vtk-9.4.2-openup1-macos-macos13-arm64-appleclang21-release",
+      "package": "vtk",
+      "version": "9.4.2",
+      "profile": "openup1",
+      "os": "macos",
+      "os_version": "macos13",
+      "arch": "arm64",
+      "toolchain": "appleclang21",
+      "config": "release",
+      "file": "vtk/9.4.2/vtk-9.4.2-openup1-macos-macos13-arm64-appleclang21-release.tar.gz",
+      "url": "https://raw.githubusercontent.com/ivlab/OpenUp-deps/main/vtk/9.4.2/vtk-9.4.2-openup1-macos-macos13-arm64-appleclang21-release.tar.gz",
+      "sha256": "9b4dd8a72da052c1a94b0bb6d5281e16bd51d263b6b150a272b67fc444abeb5f",
+      "bytes": 48920835,
+      "unpacks_to": "vtk-install",
+      "built_with": {
+        "source": "https://github.com/Kitware/VTK tag v9.4.2",
+        "system": "macOS 26.3.2, deployment target 13.0",
+        "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101), libc++",
+        "cmake_build_type": "Release",
+        "opengl": "Cocoa",
+        "nlohmann_json": "v3.11.3, installed in the same prefix",
+        "builder": "OpenUp tools/build_prebuilt_vtk.sh"
       }
     }
   ]
