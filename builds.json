@@ -75,6 +75,31 @@
         "nlohmann_json": "v3.11.3, installed in the same prefix",
         "builder": "OpenUp tools/build_prebuilt_vtk.sh"
       }
+    },
+    {
+      "name": "vtk-9.4.2-openup1-windows-win10-x86_64-msvc143-release",
+      "package": "vtk",
+      "version": "9.4.2",
+      "profile": "openup1",
+      "os": "windows",
+      "os_version": "win10",
+      "arch": "x86_64",
+      "toolchain": "msvc143",
+      "config": "release",
+      "file": "vtk/9.4.2/vtk-9.4.2-openup1-windows-win10-x86_64-msvc143-release.zip",
+      "url": "https://raw.githubusercontent.com/ivlab/OpenUp-deps/main/vtk/9.4.2/vtk-9.4.2-openup1-windows-win10-x86_64-msvc143-release.zip",
+      "sha256": "72fe390b49154afa884aa41fb5ddeb4cdfaf1b03a21675c9743ff08a876f4c02",
+      "bytes": 52860243,
+      "unpacks_to": "vtk-install",
+      "built_with": {
+        "source": "https://github.com/Kitware/VTK tag v9.4.2",
+        "system": "Microsoft Windows 10 Home",
+        "compiler": "MSVC 19.44 (msvc143), /MD",
+        "cmake_build_type": "Release",
+        "opengl": "WGL",
+        "nlohmann_json": "v3.11.3, installed in the same prefix",
+        "builder": "OpenUp tools/build_prebuilt_vtk.ps1"
+      }
     }
   ]
 }
